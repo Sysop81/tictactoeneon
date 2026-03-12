@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameManagerService } from '../../services/game-manager.service';
+import { GameHeaderComponent } from '../game-header/game-header.component';
 
 /**
  * validatePlayersNames
@@ -16,7 +17,7 @@ export const validatePlayersNames: ValidatorFn = (control: AbstractControl): Val
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,GameHeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -43,9 +44,4 @@ export class LoginComponent {
       this.router.navigate(['/game']);
     }
   }
-
-
-
-
-
 }
