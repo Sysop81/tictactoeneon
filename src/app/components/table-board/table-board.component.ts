@@ -1,4 +1,5 @@
-import { Component, signal, input,output, effect } from '@angular/core';
+import { Component,inject, signal, input,output, effect } from '@angular/core';
+import { GameManagerService } from '../../services/game-manager.service';
 
 @Component({
   selector: 'app-table-board',
@@ -8,7 +9,8 @@ import { Component, signal, input,output, effect } from '@angular/core';
   styleUrl: './table-board.component.css'
 })
 export class TableBoardComponent {
-  readonly RESET_TIMEOUT = 2000;
+  readonly RESET_TIMEOUT = 4000;
+  gameManagerService = inject(GameManagerService);
   table = signal([
       ['', '', ''],
       ['', '', ''],
@@ -24,6 +26,7 @@ export class TableBoardComponent {
   constructor() {
     effect(() => {
       if (this.needRestart()) {
+        
         setTimeout(()=>{
           this.table.set([
               ['', '', ''],
@@ -50,5 +53,17 @@ export class TableBoardComponent {
     });
       
     this.tableBoard.emit(this.table());
+  }
+
+  isWinningCell(i : number, x : number): boolean{
+    const result = this.gameManagerService.gameResult();
+
+    if(result.winner != '='){
+      return result.winningCells.some(
+        current => current[0] === i && current[1] === x
+      );
+    }
+
+    return false;
   }
 }

@@ -3,12 +3,17 @@
   --neon-glow: rgba(255, 2, 251, 0.989);
   --cell-size: 110px;
   --table-size: calc(var(--cell-size) * 3);
+  --player-o-color : #0dc2fd;
+  --player-x-color : #f7ff00;
+  --player-glow: rgba(44, 0, 255, 0.99);
+  --winner-color: #1aff91;
 
   display: block;
   margin: 0 auto;
   max-width: 400px;
   width: 100%;
 }
+
 
 .table {
   border: none !important;
@@ -40,6 +45,7 @@
     drop-shadow(0 0 2px var(--neon-color));
 }
 
+
 .table td {
   width: var(--cell-size);
   height: var(--cell-size);
@@ -48,4 +54,50 @@
   background: transparent;
   text-align: center;
   vertical-align: middle;
+  overflow: hidden;
+}
+
+.table td span {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+   
+  line-height: 1;
+  pointer-events: none; 
+  box-sizing: border-box;
+  
+}
+
+.player{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--cell-size) * 0.9);
+  font-weight: bold;
+  text-shadow: 0 3px 4px var(--player-glow);
+}
+
+.x-player{
+  color: var(--player-x-color) !important;
+}
+
+.o-player{
+  color: var(--player-o-color) !important;
+}
+
+@keyframes winner-pulse {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.winner{
+  color: var(--winner-color) !important;
+  animation: winner-pulse 2s linear infinite;
 }

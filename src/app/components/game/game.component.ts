@@ -1,5 +1,5 @@
 import { Component,signal,inject } from '@angular/core';
-import { GameManagerService } from '../../services/game-manager.service';
+import { GameManagerService, GameResult } from '../../services/game-manager.service';
 import { GameHeaderComponent } from '../game-header/game-header.component';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 import { TableBoardComponent } from '../table-board/table-board.component';
@@ -37,6 +37,10 @@ export class GameComponent {
     isRestart : boolean = false;
     MAX_MOVES : number = 9;
     movements : number = 0;
+    gameResult: GameResult ={
+      winner: '=',
+      winningCells: []
+    };
 
     updateMovements(){
       this.movements ++;
@@ -50,9 +54,10 @@ export class GameComponent {
         if (tableBoard[a[0]][a[1]] == valueChecked &&
             tableBoard[b[0]][b[1]] == valueChecked &&
             tableBoard[c[0]][c[1]] == valueChecked){
-          
-            this.isWinner = true
-            break;
+              this.gameResult.winningCells = combo;
+              this.gameResult.winner = valueChecked as 'X' | 'O' | '=';
+              this.isWinner = true
+              break;
           }
       }
 
@@ -68,14 +73,15 @@ export class GameComponent {
       this.isPlayerOne = !this.isPlayerOne;
     }
 
-
     resetGame(){
+      this.gameService.gameResult.set(this.gameResult);
       this.isRestart = true;        
       this.isWinner = false;
       this.movements = 0;
     }
 
     handleRestart(){
+      this.gameService.resetGameResult();
       this.isRestart = false;
     }
 }
