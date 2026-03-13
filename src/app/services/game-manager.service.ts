@@ -28,5 +28,10 @@ export class GameManagerService {
     this.playerTwoScore.update(score => score + 1);
   }
 
+  endGame(){
+    this.playerOneScore.set(0);
+    this.playerTwoScore.set(0);
+  }
+
   constructor() { }
 }

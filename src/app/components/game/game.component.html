@@ -1,15 +1,32 @@
-<div class="container vh-100 d-flex justify-content-center align-items-center">
+<div class="container vh-100">
+  <!-- Game Header-->
+  <div class="row">
+     <div app-game-header class="row flex-fill"></div>
+  </div>
+  <!-- Score Board-->
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered text-center p-4">
+      <app-scoreboard></app-scoreboard>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center mt-5">
+      <table class="table table-bordered text-center" style="max-width: 400px;">
           @for (row of table(); let i = $index; track i) {
             <tr>
               @for (col of row; let x = $index; track x) {
-                <td class="border p-4" (click)="cellClick(i,x)">{{ col }}</td>
+                <td class="border" (click)="cellClick(i,x)" style="height: 100px; width: 100px; font-size: 2rem;">{{ col }}</td>
               }
             </tr>
           }
-        </table>
+      </table>
     </div>
   </div>
+  
+  <!-- Exit Game -->
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center mt-1">
+      <app-game-exit></app-game-exit>
+    </div>
+  </div> 
 </div>
