@@ -1,0 +1,51 @@
+:host {
+  --neon-color: rgb(190, 89, 213);
+  --neon-glow: rgba(255, 2, 251, 0.989);
+  --cell-size: 110px;
+  --table-size: calc(var(--cell-size) * 3);
+
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+
+.table {
+  border: none !important;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: var(--table-size);
+  height: var(--table-size);
+
+  background-image: 
+    linear-gradient(to bottom, var(--neon-color), var(--neon-color)),
+    linear-gradient(to bottom, var(--neon-color), var(--neon-color)),
+    linear-gradient(to right, var(--neon-color), var(--neon-color)),
+    linear-gradient(to right, var(--neon-color), var(--neon-color));
+
+  background-size: 
+    4px 100%, 4px 100%, 
+    100% 4px, 100% 4px;
+
+  background-position: 
+    var(--cell-size) 0, 
+    calc(var(--cell-size) * 2) 0, 
+    0 var(--cell-size), 
+    0 calc(var(--cell-size) * 2);
+
+  background-repeat: no-repeat;
+
+  filter: 
+    drop-shadow(0 0 8px var(--neon-glow))
+    drop-shadow(0 0 2px var(--neon-color));
+}
+
+.table td {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  padding: 0;
+  border: none !important;
+  background: transparent;
+  text-align: center;
+  vertical-align: middle;
+}

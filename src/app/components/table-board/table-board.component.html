@@ -1,0 +1,9 @@
+<table class="table text-center">
+    @for (row of table(); let i = $index; track i) {
+        <tr>
+            @for (col of row; let x = $index; track x) {
+                <td  (click)="cellClick(i,x)" >{{ col }}</td>
+            }
+        </tr>
+    }
+</table>
