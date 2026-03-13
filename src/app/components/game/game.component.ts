@@ -2,19 +2,18 @@ import { Component,signal,inject } from '@angular/core';
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameHeaderComponent } from '../game-header/game-header.component';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
+import { TableBoardComponent } from '../table-board/table-board.component';
 import { GameExitComponent } from '../game-exit/game-exit.component';
-//import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [GameHeaderComponent,ScoreboardComponent,GameExitComponent],
+  imports: [GameHeaderComponent,ScoreboardComponent,GameExitComponent,TableBoardComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
 export class GameComponent {
-    // Inject Router
-    //private router = inject(Router);
-
+    
     // Inject the gameManager service
     private gameService = inject(GameManagerService);
     
@@ -35,40 +34,22 @@ export class GameComponent {
     ];
     isPlayerOne :boolean = true;
     isWinner : boolean = false;
+    isRestart : boolean = false;
     MAX_MOVES : number = 9;
     movements : number = 0;
-    
-    table = signal([
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', '']
-    ]);
-
-    cellClick(i : number, x : number){
-      console.log("Pulsada: " + i + "-" + x);
-      if(this.table()[i][x] != '') return;
-      this.updateMovements();
-      this.table.update(table =>{
-        const newTable = table.map(row => [...row]);
-        newTable[i][x] = this.isPlayerOne ? 'X' : 'O';
-        return newTable;
-      });
-      
-      this.checkWinner();
-      
-    }
 
     updateMovements(){
       this.movements ++;
     }
 
-    checkWinner(){
-      let valueChecked = this.isPlayerOne ? "X" : "O"
+    checkWinner(tableBoard : string[][]){
+      this.updateMovements();
+      let valueChecked = this.isPlayerOne ? "X" : "O";
       for(const combo of this.winningCombos){
         const [a, b, c] = combo;
-        if (this.table()[a[0]][a[1]] == valueChecked &&
-            this.table()[b[0]][b[1]] == valueChecked &&
-            this.table()[c[0]][c[1]] == valueChecked){
+        if (tableBoard[a[0]][a[1]] == valueChecked &&
+            tableBoard[b[0]][b[1]] == valueChecked &&
+            tableBoard[c[0]][c[1]] == valueChecked){
           
             this.isWinner = true
             break;
@@ -87,19 +68,14 @@ export class GameComponent {
       this.isPlayerOne = !this.isPlayerOne;
     }
 
+
     resetGame(){
-      this.table.set([
-                ['', '', ''],
-                ['', '', ''],
-                ['', '', '']
-              ]);
-              
+      this.isRestart = true;        
       this.isWinner = false;
       this.movements = 0;
     }
 
-    // exitGame(){
-    //   console.log("exit game")
-    //   this.router.navigate(['/login']);
-    // }
+    handleRestart(){
+      this.isRestart = false;
+    }
 }

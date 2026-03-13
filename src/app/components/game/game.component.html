@@ -9,9 +9,11 @@
       <app-scoreboard></app-scoreboard>
     </div>
   </div>
+  <!-- Table Board -->
   <div class="row">
     <div class="col-12 d-flex justify-content-center mt-5">
-      <table class="table table-bordered text-center" style="max-width: 400px;">
+      <app-table-board [isPlayer1]="isPlayerOne" (tableBoard)="checkWinner($event)" [needRestart]="isRestart" (restartDone)="handleRestart()"></app-table-board>
+      <!--table class="table table-bordered text-center" style="max-width: 400px;">
           @for (row of table(); let i = $index; track i) {
             <tr>
               @for (col of row; let x = $index; track x) {
@@ -19,7 +21,7 @@
               }
             </tr>
           }
-      </table>
+      </table-->
     </div>
   </div>
   
