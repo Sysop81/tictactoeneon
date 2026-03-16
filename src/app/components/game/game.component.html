@@ -13,15 +13,6 @@
   <div class="row">
     <div class="col-12 d-flex justify-content-center mt-5">
       <app-table-board [isPlayer1]="isPlayerOne" (tableBoard)="checkWinner($event)" [needRestart]="isRestart" (restartDone)="handleRestart()"></app-table-board>
-      <!--table class="table table-bordered text-center" style="max-width: 400px;">
-          @for (row of table(); let i = $index; track i) {
-            <tr>
-              @for (col of row; let x = $index; track x) {
-                <td class="border" (click)="cellClick(i,x)" style="height: 100px; width: 100px; font-size: 2rem;">{{ col }}</td>
-              }
-            </tr>
-          }
-      </table-->
     </div>
   </div>
   

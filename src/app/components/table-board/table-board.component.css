@@ -101,3 +101,23 @@
   color: var(--winner-color) !important;
   animation: winner-pulse 2s linear infinite;
 }
+
+@keyframes loser-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(100deg);
+    opacity: 0;
+  }
+}
+
+.loser{
+  color: red !important;
+  animation: loser-fall 2s 1s forwards;
+  pointer-events: none;
+}

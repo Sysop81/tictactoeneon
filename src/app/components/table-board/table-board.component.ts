@@ -9,7 +9,7 @@ import { GameManagerService } from '../../services/game-manager.service';
   styleUrl: './table-board.component.css'
 })
 export class TableBoardComponent {
-  readonly RESET_TIMEOUT = 4000;
+  readonly RESET_TIMEOUT = 2500;
   gameManagerService = inject(GameManagerService);
   table = signal([
       ['', '', ''],
@@ -22,9 +22,17 @@ export class TableBoardComponent {
   needRestart = input<boolean>(false);
   tableBoard = output<string[][]>();
   restartDone = output<void>();
+  
 
   constructor() {
     effect(() => {
+      
+      const isTableEmpty = this.table().every(row => 
+        row.every(cell => cell === '')
+      );
+
+      if (isTableEmpty) return;
+      
       if (this.needRestart()) {
         
         setTimeout(()=>{
@@ -33,18 +41,18 @@ export class TableBoardComponent {
               ['', '', ''],
               ['', '', '']
           ]);
-          
+
           this.restartDone.emit();
+
         },this.RESET_TIMEOUT);
-        
       }
     }, { allowSignalWrites: true });
   }
 
 
   cellClick(i : number, x : number){
-    console.log("Pulsada: " + i + "-" + x);
-    if(this.table()[i][x] != '') return;
+    
+    if(this.needRestart() || this.table()[i][x] != '') return;
     
     this.table.update(table =>{
       const newTable = table.map(row => [...row]);
@@ -55,15 +63,15 @@ export class TableBoardComponent {
     this.tableBoard.emit(this.table());
   }
 
-  isWinningCell(i : number, x : number): boolean{
+  isWinningCell(i : number, x : number): string{
     const result = this.gameManagerService.gameResult();
-
-    if(result.winner != '='){
-      return result.winningCells.some(
+    
+    if(result.winner === '=') return '';
+  
+    const isWinner = result.winningCells.some(
         current => current[0] === i && current[1] === x
-      );
-    }
+    );
 
-    return false;
+    return isWinner ? 'winner': 'loser';
   }
 }

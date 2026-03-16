@@ -78,10 +78,15 @@ export class GameComponent {
       this.isRestart = true;        
       this.isWinner = false;
       this.movements = 0;
+      this.gameResult = {
+        winner: '=',
+        winningCells: []
+      };
     }
 
     handleRestart(){
       this.gameService.resetGameResult();
       this.isRestart = false;
     }
+
 }

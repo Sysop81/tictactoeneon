@@ -4,9 +4,11 @@
             @for (col of row; let x = $index; track x) {
                 <td (click)="cellClick(i,x)" >
                     <span class="player" 
-                    [class.o-player]="col?.toLowerCase() === 'o'" 
-                    [class.x-player]="col?.toLowerCase() === 'x'" 
-                    [class.winner]="isWinningCell(i,x)">{{ col }}</span>
+                        [class.o-player]="col?.toLowerCase() === 'o'" 
+                        [class.x-player]="col?.toLowerCase() === 'x'" 
+                        [class]="isWinningCell(i,x)">
+                    {{ col }}
+                    </span>
                 </td>
             }
         </tr>
