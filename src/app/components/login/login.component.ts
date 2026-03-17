@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameManagerService } from '../../services/game-manager.service';
+import { SoundService, SoundTypes } from '../../services/sound.service';
 import { GameHeaderComponent } from '../game-header/game-header.component';
 
 /**
@@ -28,6 +29,7 @@ export class LoginComponent {
   
   // Inject the gameManager service
   private gameService = inject(GameManagerService);
+  private soundManager = inject(SoundService);
 
   // Forms
   loginForm = new FormGroup({
@@ -43,5 +45,9 @@ export class LoginComponent {
       this.gameService.initializeGame(player1 ?? 'Player1',player2 ?? 'Player2');
       this.router.navigate(['/game']);
     }
+  }
+
+  playInputSound(){
+    this.soundManager.play(SoundTypes.INPUT);
   }
 }

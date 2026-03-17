@@ -6,8 +6,8 @@
     <div class="row flex-fill">
         <div class="col-12 d-flex justify-content-center align-items-top">
             <form [formGroup]="loginForm" (ngSubmit)="startGame()" class="d-flex flex-column w-50">
-                <input formControlName="player1" type="text" class="form-control input-game" id="pOne" placeholder="Player 1" [class.error]="loginForm.get('player1')?.invalid && loginForm.get('player1')?.touched">
-                <input formControlName="player2" type="text" class="form-control mt-2 input-game" id="pTwo" placeholder="Player 2" [class.error]="loginForm.get('player2')?.invalid && loginForm.get('player2')?.touched">
+                <input (focus)="playInputSound()" formControlName="player1" type="text" class="form-control input-game" id="pOne" placeholder="Player 1" [class.error]="loginForm.get('player1')?.invalid && loginForm.get('player1')?.touched">
+                <input (focus)="playInputSound()" formControlName="player2" type="text" class="form-control mt-2 input-game" id="pTwo" placeholder="Player 2" [class.error]="loginForm.get('player2')?.invalid && loginForm.get('player2')?.touched">
                 <button class="btn-game mt-2" type="submit" [disabled]="loginForm.invalid">Play</button>
                 <!-- errors -->
                 @if (loginForm.hasError('namesEqual') || (loginForm.invalid && loginForm.get('player1')?.touched && loginForm.get('player2')?.touched)) {
