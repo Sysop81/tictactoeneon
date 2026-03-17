@@ -1,0 +1,29 @@
+:host{
+    --input-game-background: rgba(255, 255, 255, 0.05);
+    --input-game-border:rgba(0, 255, 255, 0.5);
+    --input-focus-border-color : #00ffff;
+    --input-focus-background-color: rgba(0, 255, 255, 0.1);
+}
+
+.input-game {
+  background: var(--input-game-background);
+  border: 2px solid var(--input-game-border);
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: var(--neon-color);
+  outline: none;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+.input-game:focus {
+  border-color: var(--input-focus-border-color);
+  background: var(--input-focus-background-color);
+  filter: drop-shadow(0 0 10px var(--input-focus-border-color));
+  padding-left: 30px;
+}
+
+.input-game::placeholder{
+    color: var(--neon-color);
+    opacity: 0.6;
+}

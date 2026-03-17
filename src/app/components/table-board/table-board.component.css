@@ -1,13 +1,4 @@
 :host {
-  --neon-color: rgb(190, 89, 213);
-  --neon-glow: rgba(255, 2, 251, 0.989);
-  --cell-size: 110px;
-  --table-size: calc(var(--cell-size) * 3);
-  --player-o-color : #0dc2fd;
-  --player-x-color : #f7ff00;
-  --player-glow: rgba(44, 0, 255, 0.99);
-  --winner-color: #1aff91;
-
   display: block;
   margin: 0 auto;
   max-width: 400px;

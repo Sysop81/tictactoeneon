@@ -1,12 +1,16 @@
-/* Container to limit maximum width and center the table within the parent */
 :host {
+
+  --shadow-color: rgba(129, 9, 147, 0.989);
+  --text-color: #0d9dfd;
+  --shadow-text-color: rgba(9, 138, 147, 0.989);
+  --table-border-color: #212529;
+
   display: block;
   margin: 0 auto;
   max-width: 400px;
   width: 100%;
 }
 
-/* Force columns to maintain equal width (50% each) and prevent expansion */
 .table {
   table-layout: fixed; 
   margin-bottom: 0;
@@ -14,11 +18,11 @@
   border-spacing: 0;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(129, 9, 147, 0.989);
+  box-shadow: 0 4px 10px var(--shadow-color);
 }
 
 thead td {
-  background-color: #000000;
+  background-color: var(--table-border-color);
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -27,7 +31,7 @@ thead td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 3px 4px rgba(250, 31, 254, 0.989);
+  text-shadow: 0 3px 4px var(--shadow-color);
 }
 
 tbody td {
@@ -35,11 +39,11 @@ tbody td {
   font-family: 'Courier New', Courier, monospace;
   font-size: 2rem;
   font-weight: bold;
-  color: #0d9dfd;
-  text-shadow: 0 3px 4px rgba(9, 138, 147, 0.989);
+  color: var(--text-color);
+  text-shadow: 0 3px 4px var(--shadow-text-color);
   vertical-align: middle;
 }
 
 .table-bordered {
-  border: 2px solid #212529;
+  border: 2px solid var(--table-border-color);
 }
