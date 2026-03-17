@@ -15,6 +15,7 @@
   --alert-danger-color: #ff4444;
   --alert-danger-bg-color:rgba(255, 68, 68, 0.1);
   --alert-danger-shador-color : rgba(255, 68, 68, 0.3);
+  --body-bg-color: rgb(28, 28, 28);
 }
 
 body, html {
@@ -22,6 +23,7 @@ body, html {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
+  background-color: var(--body-bg-color);
 }
 
 .animated-container {
