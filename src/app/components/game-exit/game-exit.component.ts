@@ -1,5 +1,6 @@
 import { Component,inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { GameManagerService } from '../../services/game-manager.service';
 
 @Component({
   selector: 'app-game-exit',
@@ -9,10 +10,11 @@ import { Router } from '@angular/router';
   styleUrl: './game-exit.component.css'
 })
 export class GameExitComponent {
-  
+  private gameManager = inject(GameManagerService);
   private router = inject(Router);
 
   exitGame(){
-      this.router.navigate(['/login']);
+    this.gameManager.endGame();  
+    this.router.navigate(['/login']);
   }
 }

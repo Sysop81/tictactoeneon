@@ -1,5 +1,6 @@
 import { Component,inject, signal, input,output, effect } from '@angular/core';
 import { GameManagerService } from '../../services/game-manager.service';
+import { GameState } from '../../services/storage.service';
 
 @Component({
   selector: 'app-table-board',
@@ -25,6 +26,12 @@ export class TableBoardComponent {
   
 
   constructor() {
+
+    const gameState = this.gameManagerService.gameState as GameState;
+    if(gameState){
+      this.table.set(gameState.board);
+    }
+
     effect(() => {
       
       const isTableEmpty = this.table().every(row => 
@@ -57,6 +64,7 @@ export class TableBoardComponent {
     this.table.update(table =>{
       const newTable = table.map(row => [...row]);
       newTable[i][x] = this.isPlayer1() ? 'X' : 'O';
+      this.gameManagerService.gameState.currentTurn = this.isPlayer1() ? 'O' : 'X';
       return newTable;
     });
       

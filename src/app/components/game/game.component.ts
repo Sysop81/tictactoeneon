@@ -1,6 +1,7 @@
 import { Component,signal,inject } from '@angular/core';
 import { GameManagerService, GameResult } from '../../services/game-manager.service';
 import { GameHeaderComponent } from '../game-header/game-header.component';
+import { GameState } from '../../services/storage.service';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 import { TableBoardComponent } from '../table-board/table-board.component';
 import { GameExitComponent } from '../game-exit/game-exit.component';
@@ -44,11 +45,15 @@ export class GameComponent {
 
     updateMovements(){
       this.movements ++;
+      this.gameService.updateMovements(this.movements);
     }
 
     checkWinner(tableBoard : string[][]){
+      this.gameService.updateTableBoard(tableBoard);
       this.updateMovements();
+
       let valueChecked = this.isPlayerOne ? "X" : "O";
+      //this.gameService.updateCurrentTurn(valueChecked as 'X' | 'O');
       for(const combo of this.winningCombos){
         const [a, b, c] = combo;
         if (tableBoard[a[0]][a[1]] == valueChecked &&
@@ -89,4 +94,10 @@ export class GameComponent {
       this.isRestart = false;
     }
 
+    constructor(){
+      const gameState = this.gameService.gameState as GameState;
+      if(gameState){
+        this.isPlayerOne = gameState.currentTurn === 'X';    
+      }
+    }
 }
