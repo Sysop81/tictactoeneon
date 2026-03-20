@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { trigger, transition, style, animate, AnimationEvent } from '@angular/animations';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameManagerService } from '../../services/game-manager.service';
@@ -18,6 +19,14 @@ export const validatePlayersNames: ValidatorFn = (control: AbstractControl): Val
 @Component({
   selector: 'app-login',
   standalone: true,
+  animations: [
+    trigger('errorState', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('100ms', style({ opacity: 1 }))
+      ])
+    ])
+  ],
   imports: [ReactiveFormsModule,GameHeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -39,15 +48,22 @@ export class LoginComponent {
     validators : validatePlayersNames // Funtion to check equal names
   });
 
+
   startGame(){
     if(this.loginForm.valid){
+      this.soundManager.play(SoundTypes.START);
       const { player1, player2 } = this.loginForm.value;
       this.gameService.initializeGame(player1 ?? 'Player1',player2 ?? 'Player2');
       this.router.navigate(['/game']);
     }
   }
 
-  playInputSound(){
+  playInputSound(): void{
     this.soundManager.play(SoundTypes.INPUT);
+  }
+
+  playErrorSound(e: AnimationEvent): void{
+    if(e.fromState !== 'void') return;
+    this.soundManager.play(SoundTypes.ERROR);
   }
 }

@@ -13,15 +13,15 @@
                 @if (loginForm.hasError('namesEqual') || (loginForm.invalid && loginForm.get('player1')?.touched && loginForm.get('player2')?.touched)) {
                     <div class="alert alert-danger mt-2">
                         @if (loginForm.get('player1')?.hasError('required') && loginForm.get('player1')?.touched) {
-                            <p class="mb-0">Player 1 is required.</p>
+                            <p class="mb-0" @errorState (@errorState.start)="playErrorSound($event)">Player 1 is required.</p>
                         }
                             
                         @if (loginForm.get('player2')?.hasError('required') && loginForm.get('player2')?.touched) {
-                            <p class="mb-0">Player 2 is required.</p>
+                            <p class="mb-0" @errorState (@errorState.start)="playErrorSound($event)">Player 2 is required.</p>
                         }
 
                         @if (loginForm.hasError('namesEqual')) {
-                            <p class="mb-0">The names cannot be the same.</p>
+                            <p class="mb-0" @errorState (@errorState.start)="playErrorSound($event)">The names cannot be the same.</p>
                         }
                     </div>
                 }
