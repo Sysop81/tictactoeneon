@@ -11,7 +11,7 @@
                 <button class="btn-game mt-2" type="submit" [disabled]="loginForm.invalid">Play</button>
                 <!-- errors -->
                 @if (loginForm.hasError('namesEqual') || (loginForm.invalid && loginForm.get('player1')?.touched && loginForm.get('player2')?.touched)) {
-                    <div class="alert alert-danger mt-2">
+                    <div class="alert alert-danger text-center mt-2">
                         @if (loginForm.get('player1')?.hasError('required') && loginForm.get('player1')?.touched) {
                             <p class="mb-0" @errorState (@errorState.start)="playErrorSound($event)">Player 1 is required.</p>
                         }

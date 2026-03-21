@@ -1,6 +1,7 @@
 import { Component,inject, signal, input,output, effect } from '@angular/core';
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameState } from '../../services/storage.service';
+import { SoundService, SoundTypes } from '../../services/sound.service';
 
 @Component({
   selector: 'app-table-board',
@@ -12,6 +13,7 @@ import { GameState } from '../../services/storage.service';
 export class TableBoardComponent {
   readonly RESET_TIMEOUT = 2500;
   gameManagerService = inject(GameManagerService);
+  sounManager = inject(SoundService);
   table = signal([
       ['', '', ''],
       ['', '', ''],
@@ -63,6 +65,7 @@ export class TableBoardComponent {
     
     this.table.update(table =>{
       const newTable = table.map(row => [...row]);
+      this.playMovementSound();
       newTable[i][x] = this.isPlayer1() ? 'X' : 'O';
       this.gameManagerService.gameState.currentTurn = this.isPlayer1() ? 'O' : 'X';
       return newTable;
@@ -81,5 +84,9 @@ export class TableBoardComponent {
     );
 
     return isWinner ? 'winner': 'loser';
+  }
+
+  playMovementSound(): void{
+    this.sounManager.play(SoundTypes.MOVE);
   }
 }

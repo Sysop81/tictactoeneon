@@ -3,7 +3,9 @@ import { Injectable, signal } from '@angular/core';
 export enum SoundTypes {
   INPUT = 'input',
   START = 'start',
-  ERROR = 'error'
+  ERROR = 'error',
+  MOVE = 'move',
+  EXIT = 'exit'
 }
 
 @Injectable({
@@ -11,12 +13,14 @@ export enum SoundTypes {
 })
 export class SoundService {
   
-  isMuted = signal<boolean>(false);
+  isMuted = signal<boolean>(false); // Not implemented yet
 
   private sounds : { [key: string]: HTMLAudioElement } = {
     input: new Audio('assets/sounds/input_focus.mp3'),
     start: new Audio('assets/sounds/start_game.mp3'),
-    error: new Audio('assets/sounds/error_input.mp3')
+    error: new Audio('assets/sounds/error_input.mp3'),
+    move: new Audio('assets/sounds/cell_movement.mp3'),
+    exit: new Audio('assets/sounds/exit_game.mp3')
   };
 
   play(soundName : SoundTypes): void{
