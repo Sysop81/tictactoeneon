@@ -9,6 +9,6 @@ export const routes: Routes = [
     { path: 'game', component: GameComponent, data : {animation:  'isRight'}},
 
     // Default path
-    { path:'', redirectTo:'/login', pathMatch:'full' },
-    { path:'**', redirectTo:'/login' }
+    { path:'', redirectTo:'login', pathMatch:'full' },
+    { path:'**', redirectTo:'login' }
 ];
