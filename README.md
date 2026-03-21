@@ -1,27 +1,43 @@
-# Tictactoe
+<p align="center">
+  <img src="src/assets/images/logo.png" alt="Project Logo" width="200">
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+<p align="center">
+  <img src="https://img.shields.io/badge/Angular-17.3.17-DD0031?style=for-the-badge&logo=angular" alt="Angular Version">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge" alt="Status">
+</p>
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Menu
+* [Description](#description)
+* [Deployment](#deployment)
+* [Technologies](#technologies)
+* [Features](#features)
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Description
+**Tic-Tac-Toe Neon** is a web-based implementation of the classic game, reimagined with a modern UI and smooth user experience. This project was developed to explore the latest features of **Angular 17**, focusing on reactive state management and advanced CSS animations.
 
-## Build
+The game features:
+* Real-time score tracking.
+* Dynamic player turn indicators.
+* Custom "Shake" and "Pulse" animations for errors and game results.
+* Sound effects integration for an immersive feel.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Deployment
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed and the Angular CLI:
+`npm install -g @angular/cli`
 
-## Running end-to-end tests
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/your-user/your-repo-name.git](https://github.com/your-user/your-repo-name.git)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
