@@ -35,6 +35,7 @@ export class GameComponent {
     ];
     isPlayerOne :boolean = true;
     isWinner : boolean = false;
+    isEquals : boolean = false;
     isRestart : boolean = false;
     MAX_MOVES : number = 9;
     movements : number = 0;
@@ -69,7 +70,7 @@ export class GameComponent {
         if(this.isWinner){
           this.isPlayerOne ? this.gameService.addPointToPlayerOne():
                            this.gameService.addPointToPlayerTwo();
-        }
+        }else this.isEquals = true;
 
         this.resetGame();        
       }
@@ -80,7 +81,6 @@ export class GameComponent {
     resetGame(){
       this.gameService.gameResult.set(this.gameResult);
       this.isRestart = true;        
-      this.isWinner = false;
       this.movements = 0;
       this.gameResult = {
         winner: '=',
@@ -90,6 +90,8 @@ export class GameComponent {
 
     handleRestart(){
       this.gameService.resetGameResult();
+      this.isWinner = false;
+      this.isEquals = false;
       this.isRestart = false;
     }
 

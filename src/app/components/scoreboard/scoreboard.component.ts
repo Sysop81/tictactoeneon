@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { GameManagerService } from '../../services/game-manager.service';
+import { Component, inject, input } from '@angular/core';
+import { GameManagerService, GameResult } from '../../services/game-manager.service';
 
 @Component({
   selector: 'app-scoreboard',
@@ -9,8 +9,11 @@ import { GameManagerService } from '../../services/game-manager.service';
   styleUrl: './scoreboard.component.css'
 })
 export class ScoreboardComponent {
-  // Inject the gameManager service
+    // Inject the gameManager service
     private gameService = inject(GameManagerService);
+
+    public isWinner = input<boolean>(false);
+    public isEquals = input<boolean>(false);
     
     // Get players names
     public playerOne = this.gameService.playerOne;
@@ -22,4 +25,9 @@ export class ScoreboardComponent {
 
     // Get current turn
     public playerTurn = this.gameService.playerTurn;
+
+    getPlayerName(): string{
+      const gameResult = this.gameService.gameResult();
+      return gameResult.winner === 'X' ? this.playerOne() : this.playerTwo();
+    }
 }

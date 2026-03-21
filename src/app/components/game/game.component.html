@@ -6,12 +6,12 @@
   <!-- Score Board-->
   <div class="row">
     <div class="col-12">
-      <app-scoreboard></app-scoreboard>
+      <app-scoreboard [isWinner]="isWinner" [isEquals]="isEquals"></app-scoreboard>
     </div>
   </div>
   <!-- Table Board -->
   <div class="row">
-    <div class="col-12 d-flex justify-content-center mt-5">
+    <div class="col-12 d-flex justify-content-center mt-1">
       <app-table-board [isPlayer1]="isPlayerOne" (tableBoard)="checkWinner($event)" [needRestart]="isRestart" (restartDone)="handleRestart()"></app-table-board>
     </div>
   </div>

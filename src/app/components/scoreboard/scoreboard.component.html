@@ -1,4 +1,4 @@
-<table class="table table-bordered text-center">
+<table class="table table-bordered text-center mb-1">
     <thead>
         <tr>
             <td>{{ playerOne() }}</td>
@@ -12,11 +12,21 @@
         </tr>
     </tbody>
 </table>
+@if(isWinner()){
+    <div class="text-center winner">
+        Winner <span>{{ getPlayerName() }}</span>
+    </div>
+} @else if(isEquals()){
+    <div class="text-center players-tie">
+        It's a tie!
+    </div>
+} @else{
+    <!-- Player turn -->
+    <div class="text-center">
+        Turn for the player
+        <span [class]="playerTurn() === 'X' ? 'x-player' : 'o-player'"> 
+            {{ playerTurn() }} 
+        </span>
+    </div>
+}
 
-<!-- Player turn -->
-<div class="text-center">
-    Turn for the player
-    <span [class]="playerTurn() === 'X' ? 'x-player' : 'o-player'"> 
-        {{ playerTurn() }} 
-    </span>
-</div>
