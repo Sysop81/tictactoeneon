@@ -12,9 +12,9 @@
 
 ## Menu
 * [Description](#description)
+* [Play](#play)
 * [Deployment](#deployment)
-* [Technologies](#technologies)
-* [Features](#features)
+
 
 ---
 
@@ -24,11 +24,14 @@
 The game features:
 * Real-time score tracking.
 * Dynamic player turn indicators.
-* Custom "Shake" and "Pulse" animations for errors and game results.
-* Sound effects integration for an immersive feel.
+* Custom animations and sound effects.
 
 ---
 
+## Play
+You can play the game [here](https://sysop81.github.io/tictactoeneon/).
+
+---
 ## Deployment
 
 ### Prerequisites
@@ -38,6 +41,9 @@ Make sure you have [Node.js](https://nodejs.org/) installed and the Angular CLI:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-user/your-repo-name.git](https://github.com/your-user/your-repo-name.git)
+   git clone https://github.com/Sysop81/tictactoeneon.git
+   ```
 
+2. run __ng-serve__ and open your browser to the address http://localhost:4200/
+    
 
