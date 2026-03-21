@@ -53,7 +53,6 @@ export class GameComponent {
       this.updateMovements();
 
       let valueChecked = this.isPlayerOne ? "X" : "O";
-      //this.gameService.updateCurrentTurn(valueChecked as 'X' | 'O');
       for(const combo of this.winningCombos){
         const [a, b, c] = combo;
         if (tableBoard[a[0]][a[1]] == valueChecked &&

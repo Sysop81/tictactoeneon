@@ -67,7 +67,7 @@ export class TableBoardComponent {
       const newTable = table.map(row => [...row]);
       this.playMovementSound();
       newTable[i][x] = this.isPlayer1() ? 'X' : 'O';
-      this.gameManagerService.gameState.currentTurn = this.isPlayer1() ? 'O' : 'X';
+      this.gameManagerService.updateCurrentTurn(this.isPlayer1() ? 'O' : 'X');
       return newTable;
     });
       

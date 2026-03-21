@@ -12,3 +12,11 @@
         </tr>
     </tbody>
 </table>
+
+<!-- Player turn -->
+<div class="text-center">
+    Turn for the player
+    <span [class]="playerTurn() === 'X' ? 'x-player' : 'o-player'"> 
+        {{ playerTurn() }} 
+    </span>
+</div>

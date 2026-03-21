@@ -21,24 +21,21 @@ export class GameManagerService {
   playerOneScore = signal<number>(0);
   playerTwoScore = signal<number>(0);
 
+  // Player turn
+  playerTurn = signal<string>('');
+
   // Winning player
   gameResult = signal<GameResult>({ winner: '=', winningCells: [] });
 
   // Game State object to map with local storage service
   gameState = this.getDefaultGameState();
-  // gameState : GameState = {
-  //   board: Array(3).fill(null).map(() => Array(3).fill('')),
-  //   currentTurn: 'X',
-  //   movements: 0,
-  //   pNames: {x:'Player1', o: 'Player2'},
-  //   scores: { x: 0, o: 0 }
-  // };
 
   initializeGame(p1name : string, p2name : string){
     this.playerOne.set(p1name);
     this.playerTwo.set(p2name);
     this.playerOneScore.set(0);
     this.playerTwoScore.set(0);
+    this.playerTurn.set('X');
 
     this.gameState.pNames.x = p1name;
     this.gameState.pNames.o = p2name;
@@ -70,6 +67,7 @@ export class GameManagerService {
     this.playerTwo.set('Player2');
     this.playerOneScore.set(0);
     this.playerTwoScore.set(0);
+    this.playerTurn.set('X');
     
     this.gameState = this.getDefaultGameState();
     this.storageService.clearGameData();
@@ -90,6 +88,7 @@ export class GameManagerService {
     this.playerTwo.set(this.gameState.pNames.o);
     this.playerOneScore.set(this.gameState.scores.x);
     this.playerTwoScore.set(this.gameState.scores.o);
+    this.playerTurn.set(this.gameState.currentTurn);
   }
 
   updateMovements(value : number): void{
@@ -103,6 +102,7 @@ export class GameManagerService {
   }
 
   updateCurrentTurn(value : "X" | "O"){
+    this.playerTurn.set(value);
     this.gameState.currentTurn = value;
     this.storageService.saveGame(this.gameState);
   }

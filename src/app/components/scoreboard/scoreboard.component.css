@@ -21,7 +21,7 @@
   box-shadow: 0 4px 10px var(--shadow-color);
 }
 
-thead td {
+thead td, div {
   background-color: var(--table-border-color);
   color: #fff;
   font-weight: bold;
@@ -46,4 +46,8 @@ tbody td {
 
 .table-bordered {
   border: 2px solid var(--table-border-color);
+}
+
+div{
+  background-color: transparent;
 }

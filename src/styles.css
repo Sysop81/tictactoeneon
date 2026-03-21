@@ -72,3 +72,11 @@ body, html {
   from { transform: translateY(-20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+.x-player{
+  color: var(--player-x-color) !important;
+}
+
+.o-player{
+  color: var(--player-o-color) !important;
+}

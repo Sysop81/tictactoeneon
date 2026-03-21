@@ -19,4 +19,7 @@ export class ScoreboardComponent {
     // Get scores
     public p1Score = this.gameService.playerOneScore;
     public p2Score = this.gameService.playerTwoScore;
+
+    // Get current turn
+    public playerTurn = this.gameService.playerTurn;
 }

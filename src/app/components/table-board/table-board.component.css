@@ -71,14 +71,6 @@
   text-shadow: 0 3px 4px var(--player-glow);
 }
 
-.x-player{
-  color: var(--player-x-color) !important;
-}
-
-.o-player{
-  color: var(--player-o-color) !important;
-}
-
 @keyframes winner-pulse {
   from {
     transform: rotateY(0deg);
