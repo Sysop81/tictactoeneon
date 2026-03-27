@@ -13,6 +13,7 @@ import { CpuPlayerService } from '../../services/cpu-player.service';
 })
 export class TableBoardComponent {
   readonly RESET_TIMEOUT = 2500;
+  readonly AI_PLAYER_MOVE = 500;
   gameManagerService = inject(GameManagerService);
   sounManager = inject(SoundService);
   cpuPlayer = inject(CpuPlayerService);
@@ -46,20 +47,20 @@ export class TableBoardComponent {
       if(this.isAIplaying) return;
 
       if(!isP1Turn && isAI){
-        console.log("[START] AI service playing")
+        //console.log("[START] AI service playing")
          this.isAIplaying = true; 
           untracked(() => {
             setTimeout(() => {
               //const cpuMove = this.cpuPlayer.move(this.table());
               const cpuMove = this.cpuPlayer.moveSmart(this.table());
-              console.log(cpuMove)
+            
               if(cpuMove && cpuMove.length === 2){
                 this.cellClick(cpuMove[0], cpuMove[1]);
               }
               
               this.isAIplaying = false;
-              console.log("[END] AI service playing")
-            }, 500);
+              //console.log("[END] AI service playing")
+            }, this.AI_PLAYER_MOVE);
           });
       }
         
@@ -81,7 +82,7 @@ export class TableBoardComponent {
               ['', '', ''],
               ['', '', '']
           ]);
-          console.log("game reset")
+          //console.log("game reset")
           this.restartDone.emit();
 
         },this.RESET_TIMEOUT);

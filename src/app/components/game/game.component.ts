@@ -5,6 +5,7 @@ import { GameState } from '../../services/storage.service';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 import { TableBoardComponent } from '../table-board/table-board.component';
 import { GameExitComponent } from '../game-exit/game-exit.component';
+import { WINNING_COMBOS } from '../../constants/game.constants';
 
 @Component({
   selector: 'app-game',
@@ -18,21 +19,6 @@ export class GameComponent {
     // Inject the gameManager service
     private gameService = inject(GameManagerService);
     
-    winningCombos = [
-      // Rows
-      [[0,0],[0,1],[0,2]],
-      [[1,0],[1,1],[1,2]],
-      [[2,0],[2,1],[2,2]],
-
-      // Cols
-      [[0,0],[1,0],[2,0]],
-      [[0,1],[1,1],[2,1]],
-      [[0,2],[1,2],[2,2]],
-
-      // Cross
-      [[0,0],[1,1],[2,2]],
-      [[0,2],[1,1],[2,0]],
-    ];
     isPlayerOne :boolean = true;
     isWinner : boolean = false;
     isEquals : boolean = false;
@@ -54,7 +40,7 @@ export class GameComponent {
       this.updateMovements();
 
       let valueChecked = this.isPlayerOne ? "X" : "O";
-      for(const combo of this.winningCombos){
+      for(const combo of WINNING_COMBOS){
         const [a, b, c] = combo;
         if (tableBoard[a[0]][a[1]] == valueChecked &&
             tableBoard[b[0]][b[1]] == valueChecked &&
@@ -76,8 +62,6 @@ export class GameComponent {
       }else{
         this.isPlayerOne = !this.isPlayerOne;
       }
-
-      //this.isPlayerOne = !this.isPlayerOne;
     }
 
     resetGame(){
