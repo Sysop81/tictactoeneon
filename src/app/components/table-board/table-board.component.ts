@@ -50,7 +50,9 @@ export class TableBoardComponent {
          this.isAIplaying = true; 
           untracked(() => {
             setTimeout(() => {
-              const cpuMove = this.cpuPlayer.move(this.table());
+              //const cpuMove = this.cpuPlayer.move(this.table());
+              const cpuMove = this.cpuPlayer.moveSmart(this.table());
+              console.log(cpuMove)
               if(cpuMove && cpuMove.length === 2){
                 this.cellClick(cpuMove[0], cpuMove[1]);
               }
