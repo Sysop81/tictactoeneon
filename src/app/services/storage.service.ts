@@ -6,6 +6,7 @@ export interface GameState {
   movements: number;
   pNames: {x:string; o: string};
   scores: { x: number; o: number };
+  isAIplayer: boolean;
 }
 
 @Injectable({

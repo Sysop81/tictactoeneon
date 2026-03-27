@@ -73,9 +73,11 @@ export class GameComponent {
         }else this.isEquals = true;
 
         this.resetGame();        
+      }else{
+        this.isPlayerOne = !this.isPlayerOne;
       }
 
-      this.isPlayerOne = !this.isPlayerOne;
+      //this.isPlayerOne = !this.isPlayerOne;
     }
 
     resetGame(){
@@ -93,6 +95,7 @@ export class GameComponent {
       this.isWinner = false;
       this.isEquals = false;
       this.isRestart = false;
+      this.isPlayerOne = !this.isPlayerOne;
     }
 
     constructor(){

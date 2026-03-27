@@ -1,7 +1,8 @@
-import { Component,inject, signal, input,output, effect } from '@angular/core';
+import { Component,inject, signal, input,output, effect,untracked } from '@angular/core';
 import { GameManagerService } from '../../services/game-manager.service';
 import { GameState } from '../../services/storage.service';
 import { SoundService, SoundTypes } from '../../services/sound.service';
+import { CpuPlayerService } from '../../services/cpu-player.service';
 
 @Component({
   selector: 'app-table-board',
@@ -14,6 +15,8 @@ export class TableBoardComponent {
   readonly RESET_TIMEOUT = 2500;
   gameManagerService = inject(GameManagerService);
   sounManager = inject(SoundService);
+  cpuPlayer = inject(CpuPlayerService);
+
   table = signal([
       ['', '', ''],
       ['', '', ''],
@@ -25,6 +28,8 @@ export class TableBoardComponent {
   needRestart = input<boolean>(false);
   tableBoard = output<string[][]>();
   restartDone = output<void>();
+
+  isAIplaying : boolean = false;
   
 
   constructor() {
@@ -33,6 +38,30 @@ export class TableBoardComponent {
     if(gameState){
       this.table.set(gameState.board);
     }
+
+    effect(()=>{
+      const isP1Turn = this.isPlayer1();
+      const isAI = this.gameManagerService.isPlayerTwoAI();
+      
+      if(this.isAIplaying) return;
+
+      if(!isP1Turn && isAI){
+        console.log("[START] AI service playing")
+         this.isAIplaying = true; 
+          untracked(() => {
+            setTimeout(() => {
+              const cpuMove = this.cpuPlayer.move(this.table());
+              if(cpuMove && cpuMove.length === 2){
+                this.cellClick(cpuMove[0], cpuMove[1]);
+              }
+              
+              this.isAIplaying = false;
+              console.log("[END] AI service playing")
+            }, 500);
+          });
+      }
+        
+    });
 
     effect(() => {
       
@@ -50,7 +79,7 @@ export class TableBoardComponent {
               ['', '', ''],
               ['', '', '']
           ]);
-
+          console.log("game reset")
           this.restartDone.emit();
 
         },this.RESET_TIMEOUT);
@@ -62,15 +91,15 @@ export class TableBoardComponent {
   cellClick(i : number, x : number){
     
     if(this.needRestart() || this.table()[i][x] != '') return;
+    this.playMovementSound();
     
     this.table.update(table =>{
       const newTable = table.map(row => [...row]);
-      this.playMovementSound();
       newTable[i][x] = this.isPlayer1() ? 'X' : 'O';
-      this.gameManagerService.updateCurrentTurn(this.isPlayer1() ? 'O' : 'X');
       return newTable;
     });
-      
+    
+    this.gameManagerService.updateCurrentTurn(this.isPlayer1() ? 'O' : 'X');
     this.tableBoard.emit(this.table());
   }
 

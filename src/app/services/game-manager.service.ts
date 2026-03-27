@@ -13,6 +13,9 @@ export class GameManagerService {
 
   storageService = inject(StorageService);
 
+  // Is Player two an AI
+  isPlayerTwoAI = signal<boolean>(false);
+
   // Players Names
   playerOne = signal<string>('');
   playerTwo = signal<string>('');
@@ -33,6 +36,12 @@ export class GameManagerService {
   initializeGame(p1name : string, p2name : string){
     this.playerOne.set(p1name);
     this.playerTwo.set(p2name);
+    
+    if(p2name.toLowerCase() === 'cpu'){
+      this.isPlayerTwoAI.set(true);
+      this.gameState.isAIplayer = true;
+    }
+    
     this.playerOneScore.set(0);
     this.playerTwoScore.set(0);
     this.playerTurn.set('X');
@@ -68,6 +77,7 @@ export class GameManagerService {
     this.playerOneScore.set(0);
     this.playerTwoScore.set(0);
     this.playerTurn.set('X');
+    this.isPlayerTwoAI.set(false);
     
     this.gameState = this.getDefaultGameState();
     this.storageService.clearGameData();
@@ -79,7 +89,8 @@ export class GameManagerService {
       currentTurn: 'X',
       movements: 0,
       pNames: {x:'Player1', o: 'Player2'},
-      scores: { x: 0, o: 0 }
+      scores: { x: 0, o: 0 },
+      isAIplayer : false
     };
   }
 
@@ -89,6 +100,7 @@ export class GameManagerService {
     this.playerOneScore.set(this.gameState.scores.x);
     this.playerTwoScore.set(this.gameState.scores.o);
     this.playerTurn.set(this.gameState.currentTurn);
+    this.isPlayerTwoAI.set(this.gameState.isAIplayer);
   }
 
   updateMovements(value : number): void{
