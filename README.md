@@ -25,6 +25,8 @@ The game features:
 * Real-time score tracking.
 * Dynamic player turn indicators.
 * Custom animations and sound effects.
+* Progressive Web App. 
+* Player vs AI [CPU mode].
 
 ---
 

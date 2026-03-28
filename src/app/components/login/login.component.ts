@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { trigger, transition, style, animate, AnimationEvent } from '@angular/animations';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -40,6 +40,8 @@ export class LoginComponent {
   private gameService = inject(GameManagerService);
   private soundManager = inject(SoundService);
 
+  isAImode = signal(true);
+
   // Forms
   loginForm = new FormGroup({
     player1: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(1)]}),
@@ -48,11 +50,17 @@ export class LoginComponent {
     validators : validatePlayersNames // Funtion to check equal names
   });
 
+  handleAImode(e : Event){
+    const value = e.target as HTMLInputElement;
+    this.isAImode.set(value.checked);
+    this.checkAImode();
+  }
+
 
   startGame(){
     if(this.loginForm.valid){
       this.soundManager.play(SoundTypes.START);
-      const { player1, player2 } = this.loginForm.value;
+      const { player1, player2 } = this.loginForm.getRawValue();
       this.gameService.initializeGame(player1 ?? 'Player1',player2 ?? 'Player2');
       this.router.navigate(['/game']);
     }
@@ -65,5 +73,21 @@ export class LoginComponent {
   playErrorSound(e: AnimationEvent): void{
     if(e.fromState !== 'void') return;
     this.soundManager.play(SoundTypes.ERROR);
+  }
+
+  checkAImode(): void{
+    const p2 = this.loginForm.get('player2');
+    if(this.isAImode()){
+      p2?.setValue('cpu');
+      p2?.disable();
+      p2?.setErrors(null);
+    }else{
+      p2?.enable();
+      p2?.setValue('');
+    }
+  }
+
+  constructor(){
+    this.checkAImode();
   }
 }

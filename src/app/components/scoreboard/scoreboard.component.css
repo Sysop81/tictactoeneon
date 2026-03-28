@@ -2,7 +2,6 @@
 
   --shadow-color: rgba(129, 9, 147, 0.989);
   --text-color: #0d9dfd;
-  --shadow-text-color: rgba(9, 138, 147, 0.989);
   --table-border-color: #212529;
 
   display: block;
@@ -36,11 +35,8 @@ thead td, div {
 
 tbody td {
   background-color: #de80ff8c;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 2rem;
-  font-weight: bold;
   color: var(--text-color);
-  text-shadow: 0 3px 4px var(--shadow-text-color);
+  font-size: 2rem;
   vertical-align: middle;
 }
 

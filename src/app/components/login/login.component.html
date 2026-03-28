@@ -6,9 +6,20 @@
     <div class="row flex-fill">
         <div class="col-12 d-flex justify-content-center align-items-top">
             <form [formGroup]="loginForm" (ngSubmit)="startGame()" class="d-flex flex-column w-50">
-                <input (focus)="playInputSound()" formControlName="player1" type="text" class="form-control input-game" id="pOne" placeholder="Player 1" [class.error]="loginForm.get('player1')?.invalid && loginForm.get('player1')?.touched">
-                <input (focus)="playInputSound()" formControlName="player2" type="text" class="form-control mt-2 input-game" id="pTwo" placeholder="Player 2" [class.error]="loginForm.get('player2')?.invalid && loginForm.get('player2')?.touched">
-                <button class="btn-game mt-2" type="submit" [disabled]="loginForm.invalid">Play</button>
+                <!-- Versus CPU AI -->
+                <div class="form-check"> 
+                    <input class="form-check-input" type="checkbox" (change)="handleAImode($event)" id="chkCPU" [checked]="isAImode()">
+                    <label class="form-check-label text-style" style="font-size: 0.7rem;" for="chkCPU">
+                        @if(isAImode()){
+                            <span>{{ loginForm.get('player1')?.value || 'PLAYER 1' }} vs CPU</span>
+                        }@else{
+                            <span>Check to play vs CPU</span>
+                        }  
+                    </label>
+                </div>    
+                <input (focus)="playInputSound()" formControlName="player1" type="text" class="form-control input-game text-style" id="pOne" placeholder="Player 1">
+                <input (focus)="playInputSound()" formControlName="player2" type="text" class="form-control mt-2 input-game text-style" id="pTwo" placeholder="Player 2">
+                <button class="btn-game mt-2 text-style" type="submit" [disabled]="loginForm.invalid">PLAY</button>
                 <!-- errors -->
                 @if (loginForm.hasError('namesEqual') || (loginForm.invalid && loginForm.get('player1')?.touched && loginForm.get('player2')?.touched)) {
                     <div class="alert alert-danger text-center mt-2">

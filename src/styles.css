@@ -12,10 +12,11 @@
   --btn-text-color: #fff;
   --btn-game-background-hover: #85149bcc;
 
-  --alert-danger-color: #ff4444;
+  --alert-danger-color: #ff0055;
   --alert-danger-bg-color:rgba(255, 68, 68, 0.1);
   --alert-danger-shador-color : rgba(255, 68, 68, 0.3);
   --body-bg-color: rgb(28, 28, 28);
+  --shadow-text-color: rgba(9, 138, 147, 0.989);
 }
 
 body, html {
@@ -61,6 +62,7 @@ body, html {
   background: var(--alert-danger-bg-color);
   color: var(--alert-danger-color);       
   border: 2px solid var(--alert-danger-color);
+  box-shadow: 0 0 10px var(--alert-danger-color), inset 0 0 5px var(--alert-danger-color);
   border-radius: 50px;
   backdrop-filter: blur(10px);
   filter: drop-shadow(0 0 5px var(--alert-danger-shador-color));
@@ -79,4 +81,9 @@ body, html {
 
 .o-player{
   color: var(--player-o-color) !important;
+}
+
+.text-style{
+  font-weight: bold;
+  text-shadow: 0 3px 4px var(--shadow-text-color);
 }

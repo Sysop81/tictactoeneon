@@ -27,3 +27,12 @@
     color: var(--neon-color);
     opacity: 0.6;
 }
+
+label{
+  color: var(--input-game-border);
+}
+
+.form-check-input:checked{
+  background-color: #1c1c1c;
+  border-color: var(--input-game-border);
+}
