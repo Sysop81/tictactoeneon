@@ -1,25 +1,56 @@
-<div class="container vh-100">
-  <!-- Game Header-->
+<!--div class="container vh-100">
+  <-- Game Header--
   <div class="row">
      <div app-game-header class="row flex-fill"></div>
   </div>
-  <!-- Score Board-->
+  <-- Score Board--
   <div class="row">
     <div class="col-12">
       <app-scoreboard [isWinner]="isWinner" [isEquals]="isEquals"></app-scoreboard>
     </div>
   </div>
-  <!-- Table Board -->
+  <-- Table Board --
   <div class="row">
     <div class="col-12 d-flex justify-content-center mt-1">
       <app-table-board [isPlayer1]="isPlayerOne" (tableBoard)="checkWinner($event)" [needRestart]="isRestart" (restartDone)="handleRestart()"></app-table-board>
     </div>
   </div>
   
-  <!-- Exit Game -->
+  <-- Exit Game --
   <div class="row">
     <div class="col-12 d-flex justify-content-center mt-1">
       <app-game-exit></app-game-exit>
     </div>
   </div> 
+</div-->
+
+<div class="container vh-100 d-flex flex-column justify-content-center">
+  
+  <div class="row flex-shrink-0">
+    <div class="col-12 text-center" app-game-header></div>
+  </div>
+
+  <div class="row flex-shrink-0 mt-1">
+    <div class="col-12">
+      <app-scoreboard [isWinner]="isWinner" [isEquals]="isEquals"></app-scoreboard>
+    </div>
+  </div>
+
+  <div class="row flex-shrink-0 my-1">
+    <div class="col-12 d-flex justify-content-center">
+      <app-table-board 
+      [isPlayer1]="isPlayerOne" 
+      (tableBoard)="checkWinner($event)" 
+      [needRestart]="isRestart" 
+      (restartDone)="handleRestart()">
+      </app-table-board>
+    </div>
+  </div>
+  
+  <div class="row flex-shrink-0">
+    <div class="col-12 d-flex justify-content-center">
+      <app-game-exit></app-game-exit>
+    </div>
+  </div> 
+
 </div>
