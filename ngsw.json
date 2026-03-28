@@ -1,0 +1,97 @@
+{
+  "configVersion": 1,
+  "timestamp": 1774694850623,
+  "index": "/tictactoeneon/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/tictactoeneon/favicon.ico",
+        "/tictactoeneon/index.html",
+        "/tictactoeneon/main-GQSG5HBX.js",
+        "/tictactoeneon/manifest.webmanifest",
+        "/tictactoeneon/polyfills-FFHMD2TL.js",
+        "/tictactoeneon/scripts-E4E4JJDV.js",
+        "/tictactoeneon/styles-HOJKEMOY.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/tictactoeneon/assets/icons/icon-128x128.png",
+        "/tictactoeneon/assets/icons/icon-144x144.png",
+        "/tictactoeneon/assets/icons/icon-152x152.png",
+        "/tictactoeneon/assets/icons/icon-192x192.png",
+        "/tictactoeneon/assets/icons/icon-384x384.png",
+        "/tictactoeneon/assets/icons/icon-512x512.png",
+        "/tictactoeneon/assets/icons/icon-72x72.png",
+        "/tictactoeneon/assets/icons/icon-96x96.png",
+        "/tictactoeneon/assets/icons/screenshot-desktop.png",
+        "/tictactoeneon/assets/icons/screenshot-mobile.png",
+        "/tictactoeneon/assets/images/logo.png",
+        "/tictactoeneon/assets/sounds/cell_movement.mp3",
+        "/tictactoeneon/assets/sounds/error_input.mp3",
+        "/tictactoeneon/assets/sounds/exit_game.mp3",
+        "/tictactoeneon/assets/sounds/input_focus.mp3",
+        "/tictactoeneon/assets/sounds/start_game.mp3"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/tictactoeneon/assets/icons/icon-128x128.png": "0c438d7cf30581887d6a9b7b45883d1179236103",
+    "/tictactoeneon/assets/icons/icon-144x144.png": "31999510a75b4f03579fec45affb09dd6eb3674a",
+    "/tictactoeneon/assets/icons/icon-152x152.png": "71021bec048cd8a93fa25bfb9801df04d7d9bb4c",
+    "/tictactoeneon/assets/icons/icon-192x192.png": "b2bea420bcb37c0a84526d045e05370fe9834105",
+    "/tictactoeneon/assets/icons/icon-384x384.png": "7db4ddfb17a67fe7f59e096a22dfe5d1f879a90b",
+    "/tictactoeneon/assets/icons/icon-512x512.png": "792a84a647f7febe7e5a728dcd4c32e25fe21e33",
+    "/tictactoeneon/assets/icons/icon-72x72.png": "db910c8f1ae8913c56363ae50a3872de5aceb188",
+    "/tictactoeneon/assets/icons/icon-96x96.png": "9afc1c370eeed758a2fdec186e90603990a0a52d",
+    "/tictactoeneon/assets/icons/screenshot-desktop.png": "6388f0ddc92d5fedce8c6bf95882a44809722cbc",
+    "/tictactoeneon/assets/icons/screenshot-mobile.png": "46c2d3cde052e632e1df0dc2006546afb8381086",
+    "/tictactoeneon/assets/images/logo.png": "7b6b8829bc47c0abec80257fee9968f85124f919",
+    "/tictactoeneon/assets/sounds/cell_movement.mp3": "9d4b662a373e841a8dfaf9b4069b2bdf4bdb7c7b",
+    "/tictactoeneon/assets/sounds/error_input.mp3": "4cf295a86d52d18495be0d5570f0048134d9b8ed",
+    "/tictactoeneon/assets/sounds/exit_game.mp3": "75b3544ef88796f1471f6707dfdb836ac99bc525",
+    "/tictactoeneon/assets/sounds/input_focus.mp3": "e8679e0c2653266e91a4d8f359066d419e233a60",
+    "/tictactoeneon/assets/sounds/start_game.mp3": "1a999b849768a753b8d6f886eddecd6889b46c6e",
+    "/tictactoeneon/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/tictactoeneon/index.html": "f87e035777b54b155e5c1490236369c0d457a1ed",
+    "/tictactoeneon/main-GQSG5HBX.js": "c452efe4c703a84b61e330b393a66f2f45faa812",
+    "/tictactoeneon/manifest.webmanifest": "4d1c1b72be1e7f42324f1e1ca1a0b6743891e6c6",
+    "/tictactoeneon/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
+    "/tictactoeneon/scripts-E4E4JJDV.js": "574033ee8d661ebcc56876acd7b4316f8e84a220",
+    "/tictactoeneon/styles-HOJKEMOY.css": "13f4e4b7d03cf77c1255062a75291cae54f6585b"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
